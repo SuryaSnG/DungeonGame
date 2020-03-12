@@ -9,7 +9,7 @@ Command* Parser::getCommand() {
 	string word1;
 	string word2;
 	string buffer;
-	vector<string> words;
+	vector<string.h> words;
 
 	cout << "> "; // print prompt
 

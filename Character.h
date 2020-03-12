@@ -2,9 +2,9 @@
 #define CHARACTER_H_
 #include "ZorkUL.h"
 
-#include <string>
+#include <string.h>
 using namespace std;
-#include <vector>
+#include <vector.h>
 using std::vector;
 
 

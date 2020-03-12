@@ -1,6 +1,6 @@
 #include "CommandWords.h"
 
-vector<string> CommandWords::validCommands;
+vector<string.h> CommandWords::validCommands;
 
 /**
  * Constructor - initialise the command words.

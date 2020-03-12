@@ -1,9 +1,9 @@
 #ifndef ITEM_H_
 #define ITEM_H_
 
-#include <map>
-#include <string>
-#include <iostream>
+#include <map.h>
+#include <string.h>
+#include <iostream.h>
 using namespace std;
 
 class Item {

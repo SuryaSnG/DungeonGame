@@ -1,12 +1,12 @@
-#include <iostream>
+#include <iostream.h>
 #include <time.h>
 #include <stdlib.h>
-#include <algorithm>
+#include <algorithm.h>
 
 using namespace std;
 #include "ZorkUL.h"
 
-int main(int argc, char argv[]) {
+int main() {
     ZorkUL temp;
     temp.play();
     return 0;

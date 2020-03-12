@@ -1,9 +1,9 @@
 #ifndef ROOM_H_
 #define ROOM_H_
 
-#include <map>
-#include <string>
-#include <vector>
+#include <map.h>
+#include <string.h>
+#include <vector.h>
 #include "item.h"
 using namespace std;
 using std::vector;

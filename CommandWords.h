@@ -1,16 +1,16 @@
 #ifndef COMMANDWORDS_H_
 #define COMMANDWORDS_H_
 
-#include <iostream>
-#include <string>
-#include <vector>
+#include <iostream.h>
+#include <string.h>
+#include <vector.h>
 using namespace std;
 
 class CommandWords {
 private:
 	//Define a static vector for our valid command words.
 	//We'll populate this in the class constructor
-	static vector<string> validCommands;
+	static vector<string.h> validCommands;
 
 public:
 	CommandWords();

@@ -1,7 +1,7 @@
 #ifndef COMMAND_H_
 #define COMMAND_H_
 
-#include <string>
+#include <string.h>
 using namespace std;
 
 class Command {

@@ -5,9 +5,9 @@
 #include "Parser.h"
 #include "Room.h"
 #include "item.h"
-#include <iostream>
-#include <string>
-#include <vector>
+#include <iostream.h>
+#include <string.h>
+#include <vector.h>
 using namespace std;
 
 class ZorkUL {
