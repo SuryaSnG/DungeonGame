@@ -14,9 +14,11 @@ class ZorkUL
 {
     private:
         Parser parser;
-        Room *currentRoom;
+        Room* currentRoom;
+        Room* spawnRoom;
+        Room* exitRoom;
         vector<Room> roomList;
-        void createRooms();
+        void createWorld();
         void printWelcome();
         bool processCommand(Command command);
         void printHelp();
@@ -24,6 +26,7 @@ class ZorkUL
         void displayItems();
     public:
         string teleport();
+        Room* randomRoomSelection();
         string goRoom(Command command);
         ZorkUL();
         void play();
