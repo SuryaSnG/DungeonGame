@@ -6,7 +6,7 @@
 using namespace std;
 #include "ZorkUL.h"
 
-int main(int argc, char argv[])
+int main(/*int argc, char argv[]*/)
 {
     ZorkUL temp;
     temp.play();
@@ -15,10 +15,10 @@ int main(int argc, char argv[])
 
 ZorkUL::ZorkUL()
 {
-	createRooms();
+    createWorld();
 }
 
-void ZorkUL::createRooms()
+void ZorkUL::createWorld()
 {
     Room *a, *b, *c, *d, *e;
     Room *f, *g, *h, *i, *j;
@@ -52,6 +52,7 @@ void ZorkUL::createRooms()
     x = new Room("x");
     y = new Room("y");
     z = new Room("z");
+    z->setStatus(false);
 
     //(N, E, S, W)
     a->setExits(NULL, b,    f,    NULL);
@@ -107,7 +108,41 @@ void ZorkUL::createRooms()
     roomList.push_back(*w);
     roomList.push_back(*x);
     roomList.push_back(*y);
+    roomList.push_back(*z);
+
     currentRoom = a;
+    spawnRoom = a;
+    exitRoom = z;
+    Room* test;
+
+    vector<Item> keyList;
+    keyList.empty();
+    Item key1("KEYI");
+    Item key2("KEYII");
+    Item key3("KEYIII");
+    keyList.push_back(key1);
+    keyList.push_back(key2);
+    keyList.push_back(key3);
+
+    //vector<Room> keysInRoom;
+    //keysInRoom.empty();
+    bool temp = true;
+    for(int i=0; i<3; i++)
+    {
+        //temp = true;
+        while(temp)
+        {
+            test = randomRoomSelection();
+            if(test != spawnRoom && test->numberOfItems() == 0)
+            {
+
+                test->addItem(&keyList.at(i));
+                cout<<test->longDescription()<<endl;
+                temp = false;
+            }
+        }
+        temp = true;
+    }
 }
 
 /**
@@ -237,95 +272,14 @@ void ZorkUL::printHelp()
 	parser.showCommands();
 
 }
-
 string ZorkUL::teleport()
 {
-    int r = 0;
     bool temp = true;
-    Room *teleportRoom;
+    Room* teleportRoom;
     while(temp)
     {
-        srand (time(NULL));
-        r = rand() % 25;
-        switch(r)
-        {
-            case 0:
-            teleportRoom = &roomList.at(0);
-            break;
-            case 1:
-            teleportRoom = &roomList.at(1);
-            break;
-            case 2:
-            teleportRoom = &roomList.at(2);
-            break;
-            case 3:
-            teleportRoom = &roomList.at(3);
-            break;
-            case 4:
-            teleportRoom = &roomList.at(4);
-            break;
-            case 5:
-            teleportRoom = &roomList.at(5);
-            break;
-            case 6:
-            teleportRoom = &roomList.at(6);
-            break;
-            case 7:
-            teleportRoom = &roomList.at(7);
-            break;
-            case 8:
-            teleportRoom = &roomList.at(8);
-            break;
-            case 9:
-            teleportRoom = &roomList.at(9);
-            break;
-            case 10:
-            teleportRoom = &roomList.at(10);
-            break;
-            case 11:
-            teleportRoom = &roomList.at(11);
-            break;
-            case 12:
-            teleportRoom = &roomList.at(12);
-            break;
-            case 13:
-            teleportRoom = &roomList.at(13);
-            break;
-            case 14:
-            teleportRoom = &roomList.at(14);
-            break;
-            case 15:
-            teleportRoom = &roomList.at(15);
-            break;
-            case 16:
-            teleportRoom = &roomList.at(16);
-            break;
-            case 17:
-            teleportRoom = &roomList.at(17);
-            break;
-            case 18:
-            teleportRoom = &roomList.at(18);
-            break;
-            case 19:
-            teleportRoom = &roomList.at(19);
-            break;
-            case 20:
-            teleportRoom = &roomList.at(20);
-            break;
-            case 21:
-            teleportRoom = &roomList.at(21);
-            break;
-            case 22:
-            teleportRoom = &roomList.at(22);
-            break;
-            case 23:
-            teleportRoom = &roomList.at(23);
-            break;
-            case 24:
-            teleportRoom = &roomList.at(24);
-            break;
-        }
-        if(teleportRoom != currentRoom)
+        teleportRoom = randomRoomSelection();
+        if(teleportRoom != currentRoom && teleportRoom != exitRoom)
         {
             temp = false;
             currentRoom=teleportRoom;
@@ -333,6 +287,95 @@ string ZorkUL::teleport()
     }
     return("teleporting...\n" + currentRoom->longDescription() + "\n");
 }
+
+Room* ZorkUL::randomRoomSelection()
+{
+    int r = 0;
+    Room* teleportRoom;
+    srand (time(NULL));
+    r = rand() % 25;
+    switch(r)
+    {
+        case 0:
+        teleportRoom = &roomList.at(0);
+        break;
+        case 1:
+        teleportRoom = &roomList.at(1);
+        break;
+        case 2:
+        teleportRoom = &roomList.at(2);
+        break;
+        case 3:
+        teleportRoom = &roomList.at(3);
+        break;
+        case 4:
+        teleportRoom = &roomList.at(4);
+        break;
+        case 5:
+        teleportRoom = &roomList.at(5);
+        break;
+        case 6:
+        teleportRoom = &roomList.at(6);
+        break;
+        case 7:
+        teleportRoom = &roomList.at(7);
+        break;
+        case 8:
+        teleportRoom = &roomList.at(8);
+        break;
+        case 9:
+        teleportRoom = &roomList.at(9);
+        break;
+        case 10:
+        teleportRoom = &roomList.at(10);
+        break;
+        case 11:
+        teleportRoom = &roomList.at(11);
+        break;
+        case 12:
+        teleportRoom = &roomList.at(12);
+        break;
+        case 13:
+        teleportRoom = &roomList.at(13);
+        break;
+        case 14:
+        teleportRoom = &roomList.at(14);
+        break;
+        case 15:
+        teleportRoom = &roomList.at(15);
+        break;
+        case 16:
+        teleportRoom = &roomList.at(16);
+        break;
+        case 17:
+        teleportRoom = &roomList.at(17);
+        break;
+        case 18:
+        teleportRoom = &roomList.at(18);
+        break;
+        case 19:
+        teleportRoom = &roomList.at(19);
+        break;
+        case 20:
+        teleportRoom = &roomList.at(20);
+        break;
+        case 21:
+        teleportRoom = &roomList.at(21);
+        break;
+        case 22:
+        teleportRoom = &roomList.at(22);
+        break;
+        case 23:
+        teleportRoom = &roomList.at(23);
+        break;
+        case 24:
+        teleportRoom = &roomList.at(24);
+        break;
+    }
+    return teleportRoom;
+    //return("teleporting...\n" + currentRoom->longDescription() + "\n");
+}
+
 string ZorkUL::goRoom(Command command)
 {
     if (!command.hasSecondWord())
@@ -353,8 +396,15 @@ string ZorkUL::goRoom(Command command)
     }
     else
     {
-		currentRoom = nextRoom;
-		cout << currentRoom->longDescription() << endl;
+        if(nextRoom != exitRoom)
+        {
+            currentRoom = nextRoom;
+            cout << currentRoom->longDescription() << endl;
+        }
+        else
+        {
+            //check if the player has 3 keys
+        }
 	}
     return(currentRoom->longDescription() + "\n");
 }
